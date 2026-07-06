@@ -19,7 +19,7 @@ import { LoginUserModule } from "./login-user/login-user.module";
     ],
     controllers: [],
     providers: [],
-    exports: [UserModule],
+    exports: [],
 })
 
-export class UserModule { }
+export class AuthModule { }
