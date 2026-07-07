@@ -109,7 +109,8 @@ export default function EventFormModalComp({ isOpen, onClose }: EventFormModalPr
                         <TextField
                             id={`${2}-input`}
                             type="description"
-                            placeholder="wedding event is wonderful at location organized by ...."
+                            multiline
+                            placeholder="wedding event is wonderful at location organized by somewhere and by whom and some related description...."
                             fullWidth
                             {...register("description")}
                             variant="standard"
