@@ -2,6 +2,7 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { RegisterSchemaType } from "@/schemas/register"
+import { RootState } from "@/redux/store";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8090";
 
@@ -70,3 +71,32 @@ export const logoutUser = createAsyncThunk(
         }
     }
 )
+
+export const updateUser = createAsyncThunk<
+    any,
+    { name: string; email: string },
+    { state: RootState }
+>(
+    "auth/update",
+    async (payload, { getState, rejectWithValue }) => {
+        try {
+            const token = getState().authReducer.token || "";
+            const res = await fetch(`${BACKEND_URL}/api/v1/user`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) throw new Error(result.message);
+
+            return result;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
