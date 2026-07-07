@@ -32,10 +32,11 @@
 .eventTitle,
 .eventDescription {
     width: 100%;
-    height: fit-content;
+    height: 100%;
+    overflow: auto;
     display: flex;
     justify-content: flex-start;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: black;
 }
