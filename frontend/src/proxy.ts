@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { UserRoleEnum } from "./redux/feature/auth/user.enum";
 
-const publicRoutes = ['/public', '/auth/user/login', '/auth/user/register', '/auth/studio/register', '/auth/studio/welcome', '/'];
+const publicRoutes = ['/public', '/auth/user/login', '/auth/user/register', '/auth/studio/register', '/auth/studio/welcome', '/','/event/[event_uuid]'];
 const authBlockRoutes = ['/auth/user/login', '/auth/user/register', '/auth/studio/register', '/auth/studio/welcome'];
-const studioRoutes = ['/subscription/plan'];
+const studioRoutes = ['/subscription/plan','/gallery/event','/gallery/account'];
 
 export default function proxy(req: NextRequest) {
     const credentials = req.cookies.get("token")?.value;
