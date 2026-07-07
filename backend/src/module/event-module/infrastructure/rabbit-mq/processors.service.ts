@@ -23,7 +23,7 @@ export class ProcessorsService {
         'user.registered': [this.handleUserRegister],
         'user.updated': [this.handleUserUpdate],
         'subscription_user.created': [this.handleSubscriptionUserCreated],
-        'subscription_user.deleted': [this.handleSubscriptionUserCreated],
+        'subscription_user.deleted': [this.handleSubscriptionUserDeleted],
     };
 
     @Transactional({

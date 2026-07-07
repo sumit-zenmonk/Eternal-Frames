@@ -26,6 +26,15 @@ export class SubscriptionUserRepository extends Repository<SubscriptionUserEntit
         return sub;
     }
 
+    async findByStudioUuid(user_uuid: string) {
+        const sub = await this.findOne({
+            where: {
+                user_uuid: user_uuid
+            }
+        });
+        return sub;
+    }
+
     async deleteSubscriptionUser(uuid: string) {
         return await this.softDelete(uuid);
     }
