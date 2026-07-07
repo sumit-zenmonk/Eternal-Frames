@@ -11,7 +11,7 @@ export class CancelUserSubscriptionPlanService {
     ) { }
 
     @Transactional({
-        connectionName: process.env.DB_POSTGRES_BILLING_SCHEMA || 'billing_schema',
+        connectionName: process.env.DB_POSTGRES_EVENT_SCHEMA || 'event_schema',
     })
     async handle(body: SubscriptionUserCancelMQEventPayload) {
         const isActivePlanExists = await this.repository.findByUuid(body.uuid);
