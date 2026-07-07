@@ -12,6 +12,7 @@
 .bottomContainer {
     width: 100%;
     height: fit-content;
+    min-height: 30%;
 }
 
 .title {
@@ -120,6 +121,10 @@
     fill: rgb(0, 159, 0);
 }
 
+.passivePlan {
+    fill: #6b7280;
+}
+
 .featureBox {
     width: 100%;
     height: 40%;
@@ -194,6 +199,14 @@
     border: 1px solid #794f00;
     padding: 7%;
     font-weight: 700;
+}
+
+.buyPlanButton {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid #794f00;
+    font-weight: 700;
+    color: #9c6500;
 }
 
 .renewPlanButton {

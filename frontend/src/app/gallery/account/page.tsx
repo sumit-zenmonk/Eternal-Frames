@@ -164,7 +164,12 @@ export default function GalleryAccountPage() {
 
                                 </Box>
                                 :
-                                <>No Active Plan exists right now</>
+                                <Box className={styles.planButtonSection}>
+                                    <Typography>No Active Plan exists right now</Typography>
+                                    <Button className={styles.buyPlanButton} onClick={() => { router.push('/subscription/plan') }}>
+                                        Buy Subscription
+                                    </Button>
+                                </Box>
                         }
                     </Box>
 
