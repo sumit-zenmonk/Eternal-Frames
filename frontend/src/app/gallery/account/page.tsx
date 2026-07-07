@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { enqueueSnackbar } from 'notistack';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks.ts';
 import { RootState } from '@/redux/store';
-import { getCurrentSubscriptionPlan } from '@/redux/feature/subscription/subscription-action';
+import { cancelCurrentSubscriptionPlan, getCurrentSubscriptionPlan } from '@/redux/feature/subscription/subscription-action';
 import { updateUser } from '@/redux/feature/auth/auth-action';
 import { useEffect } from 'react';
 import { Feature } from '@/redux/feature/subscription/subscription-type';
@@ -44,6 +44,16 @@ export default function GalleryAccountPage() {
         try {
             await dispatch(updateUser(data)).unwrap();
             enqueueSnackbar("Profile updated successfully", { variant: "success" });
+        } catch (error) {
+            enqueueSnackbar(String(error || "Something went wrong"), { variant: "error" });
+            console.log(error)
+        }
+    }
+
+    const handleCancelSubscription = async () => {
+        try {
+            await dispatch(cancelCurrentSubscriptionPlan()).unwrap();
+            enqueueSnackbar("Subscription Plan cancelled Success", { variant: "success" });
         } catch (error) {
             enqueueSnackbar(String(error || "Something went wrong"), { variant: "error" });
             console.log(error)
@@ -148,7 +158,7 @@ export default function GalleryAccountPage() {
                                         </Box>
 
                                         <Box className={styles.cancelSubscriptionBox}>
-                                            <Button className={styles.cancelSubscriptionButton}>Cancel Subscription</Button>
+                                            <Button className={styles.cancelSubscriptionButton} onClick={async () => await handleCancelSubscription()}>Cancel Subscription</Button>
                                         </Box>
                                     </Box>
 

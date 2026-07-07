@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { EventEventHandlerMap, EventEventPayloadMap, UserRegisteredMQEventPayload, UserUpdatedMQEventPayload, SubscriptionUserCreatedMQEventPayload } from './rabbit-mq.type';
+import { EventEventHandlerMap, EventEventPayloadMap, UserRegisteredMQEventPayload, UserUpdatedMQEventPayload, SubscriptionUserCreatedMQEventPayload, SubscriptionUserCancelMQEventPayload } from './rabbit-mq.type';
 import { InboxRepository } from '../repository/inbox.repository';
 import { Transactional } from 'typeorm-transactional';
 import { RegisterUserService } from '../../feature/auth/register-user/register-user.handler';
 import { UpdateUserService } from '../../feature/user/update-user/update-user.handler';
 import { RegisterSubscriptionUserService } from '../../feature/subscription-user/register-subscription-user/register-subscription-user.handler';
+import { CancelUserSubscriptionPlanService } from '../../feature/subscription-user/cancel-user-subscription/cancel-user-subscription.handler';
 
 @Injectable()
 export class ProcessorsService {
@@ -12,6 +13,7 @@ export class ProcessorsService {
         private readonly registerUserService: RegisterUserService,
         private readonly updateUserService: UpdateUserService,
         private readonly registerSubscriptionUserService: RegisterSubscriptionUserService,
+        private readonly cancelUserSubscriptionPlanService: CancelUserSubscriptionPlanService,
         private readonly inboxRepository: InboxRepository,
     ) { }
     private readonly logger = new Logger(ProcessorsService.name);
@@ -20,7 +22,8 @@ export class ProcessorsService {
     public eventHandlerMap: EventEventHandlerMap = {
         'user.registered': [this.handleUserRegister],
         'user.updated': [this.handleUserUpdate],
-        'subscription_user.created': [this.handleSubscriptionUserCreated]
+        'subscription_user.created': [this.handleSubscriptionUserCreated],
+        'subscription_user.deleted': [this.handleSubscriptionUserCreated],
     };
 
     @Transactional({
@@ -63,5 +66,9 @@ export class ProcessorsService {
 
     async handleSubscriptionUserCreated(payload: SubscriptionUserCreatedMQEventPayload) {
         await this.registerSubscriptionUserService.handle(payload);
+    }
+
+    async handleSubscriptionUserDeleted(payload: SubscriptionUserCancelMQEventPayload) {
+        await this.cancelUserSubscriptionPlanService.handle(payload);
     }
 }

@@ -8,6 +8,7 @@ import { InboxRepository } from '../repository/inbox.repository';
 import { UserRepository } from '../repository/user.repository';
 import { SubscriptionUserRepository } from '../repository/subscription-user.repository';
 import { EventRabbitMQConsumerInitializer } from './rabbit-mq-consumer-initializer';
+import { CancelUserSubscriptionPlanService } from '../../feature/subscription-user/cancel-user-subscription/cancel-user-subscription.handler';
 
 @Module({
     providers: [
@@ -17,6 +18,7 @@ import { EventRabbitMQConsumerInitializer } from './rabbit-mq-consumer-initializ
         RegisterUserService,
         UpdateUserService,
         RegisterSubscriptionUserService,
+        CancelUserSubscriptionPlanService,
         InboxRepository,
         UserRepository,
         SubscriptionUserRepository,

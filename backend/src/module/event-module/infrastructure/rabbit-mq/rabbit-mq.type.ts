@@ -18,6 +18,15 @@ export interface SubscriptionUserCreatedMQEventPayload {
     deleted_at?: Date;
 }
 
+export interface SubscriptionUserCancelMQEventPayload {
+    uuid: string;
+    user_uuid: string;
+    plan_uuid: string;
+    created_at?: Date;
+    updated_at?: Date;
+    deleted_at?: Date;
+}
+
 export interface UserUpdatedMQEventPayload {
     uuid: string;
     email: string;
@@ -32,6 +41,7 @@ export type EventEventPayloadMap = {
     'user.registered': UserRegisteredMQEventPayload,
     'user.updated': UserUpdatedMQEventPayload,
     'subscription_user.created': SubscriptionUserCreatedMQEventPayload,
+    'subscription_user.deleted': SubscriptionUserCancelMQEventPayload,
 };
 
 // Generic union type

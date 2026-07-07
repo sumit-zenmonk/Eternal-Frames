@@ -25,4 +25,9 @@ export class SubscriptionUserRepository extends Repository<SubscriptionUserEntit
         });
         return sub;
     }
+
+    async deleteSubscriptionUser(uuid: string) {
+        return await this.softDelete(uuid);
+    }
+
 }
