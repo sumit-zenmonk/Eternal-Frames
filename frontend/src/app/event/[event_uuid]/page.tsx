@@ -68,12 +68,14 @@ export default function HomePage() {
 
             <Box className={styles.eventInfoBox}>
                 <Box className={styles.eventInfo}>
-                    <Box className={styles.eventTitle}>
+                    <Typography className={styles.eventTitle}>
                         {event?.title || 'N/A Title'}
-                    </Box>
-                    <Box className={styles.eventDescription}>
+                    </Typography>
+
+                    <Typography className={styles.eventDescription}>
                         {event?.description}
-                    </Box>
+                    </Typography>
+
                     <Button
                         startIcon={<FileUploadOutlinedIcon />}
                         className={styles.uploadImageButton}
