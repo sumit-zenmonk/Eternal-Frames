@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     ]
   },
   images: {
-    // dangerouslyAllowLocalIP: true,
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
+        port: '8090',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'backend',
         port: '8090',
         pathname: '/uploads/**',
       },
