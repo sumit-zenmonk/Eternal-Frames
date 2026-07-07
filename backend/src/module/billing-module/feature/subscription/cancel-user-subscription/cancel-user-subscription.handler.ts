@@ -10,7 +10,7 @@ export class CancelUserSubscriptionPlanService {
     private BILLING_EXCHANGE = 'billing.exchange';
 
     constructor(
-        private readonly repository: SubscriptionUserRepository,
+        private readonly subscriptionUserRepository: SubscriptionUserRepository,
         private readonly outboxRepository: OutboxRepository,
     ) { }
 
@@ -18,12 +18,12 @@ export class CancelUserSubscriptionPlanService {
         connectionName: process.env.DB_POSTGRES_BILLING_SCHEMA || 'billing_schema',
     })
     async handle(req: Request) {
-        const isActivePlanExists = await this.repository.findByUserUuid(req.user.uuid);
+        const isActivePlanExists = await this.subscriptionUserRepository.findByUserUuid(req.user.uuid);
         if (!isActivePlanExists) {
             throw new BadRequestException("You have No Active Plan right now");
         }
 
-        await this.repository.deleteSubscriptionUser(isActivePlanExists.uuid);
+        await this.subscriptionUserRepository.deleteSubscriptionUser(isActivePlanExists.uuid);
 
         await this.outboxRepository.createOutboxEntry({
             exchange_name: this.BILLING_EXCHANGE,
