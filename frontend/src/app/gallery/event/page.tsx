@@ -106,7 +106,7 @@ export default function GalleryEventPage() {
                                     className={styles.card}
                                 >
                                     <Box className={styles.ImageBox}>
-                                        <Image src={event.image_url || ''} alt='rightBusinessInfo.jpg' width={100} height={100} className={styles.eventImage} />
+                                        <Image src={event.image_url || ''} alt={event.image_url || ''} width={100} height={100} className={styles.eventImage} />
                                     </Box>
 
                                     <Box className={styles.eventInfoBox}>

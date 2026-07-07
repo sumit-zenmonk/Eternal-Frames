@@ -126,7 +126,7 @@ export default function HomePage() {
                         <Image
                             key={index}
                             src={image.image_url || ''}
-                            alt='rightBusinessInfo.jpg'
+                            alt={image.image_url || ''}
                             width={100}
                             height={100}
                             className={styles.eventImage}
