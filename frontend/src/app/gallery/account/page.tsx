@@ -12,11 +12,14 @@ import { getCurrentSubscriptionPlan } from '@/redux/feature/subscription/subscri
 import { updateUser } from '@/redux/feature/auth/auth-action';
 import { useEffect } from 'react';
 import { Feature } from '@/redux/feature/subscription/subscription-type';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { calculateSubscriptionExpiry } from '@/utils/subscription';
+import { useRouter } from 'next/navigation';
 
 export default function GalleryAccountPage() {
+    const router = useRouter();
     const { user } = useAppSelector((state: RootState) => state.authReducer);
     const { subscriptionUserPlan } = useAppSelector((state: RootState) => state.subscriptionReducer);
     const dispatch = useAppDispatch();
@@ -121,7 +124,7 @@ export default function GalleryAccountPage() {
                                         <Box className={styles.planSection}>
                                             <Box className={styles.planStatus}>
                                                 <Typography className={styles.planStatusTitle}>Status</Typography>
-                                                <Typography>{subscriptionStatus}</Typography>
+                                                <Typography>{subscriptionStatus == 'Active' ? <FiberManualRecordIcon className={styles.activePlan} /> : <FiberManualRecordIcon className={styles.passivePlan} />} {subscriptionStatus}</Typography>
                                             </Box>
                                             <Box className={styles.planStatus}>
                                                 <Typography className={styles.planStatusTitle}>Renewal</Typography>
@@ -134,26 +137,35 @@ export default function GalleryAccountPage() {
                                         </Box>
                                     </Box>
 
-                                    <Box className={styles.planButtonSection}>
-                                        <Button className={styles.renewPlanButton}>
-                                            Renew Now
-                                        </Button>
-                                        <Button className={styles.viewPlanButton}>
-                                            View Plans
-                                        </Button>
+                                    <Box className={styles.planOptions}>
+                                        <Box className={styles.planButtonSection}>
+                                            <Button className={styles.renewPlanButton}>
+                                                Renew Now
+                                            </Button>
+                                            <Button className={styles.viewPlanButton} onClick={() => { router.push('/subscription/plan') }}>
+                                                View Plans
+                                            </Button>
+                                        </Box>
+
+                                        <Box className={styles.cancelSubscriptionBox}>
+                                            <Button className={styles.cancelSubscriptionButton}>Cancel Subscription</Button>
+                                        </Box>
                                     </Box>
+
                                 </Box>
                                 :
                                 <>No Active Plan exists right now</>
                         }
                     </Box>
+
+
                     <Box className={styles.rightContainer}>
                         <Typography className={styles.bottomTitles}>Plan Features</Typography>
                         <Box>
                             {subscriptionUserPlan?.plan?.features && subscriptionUserPlan.plan.features.map((feature: Feature) => {
                                 return (
                                     <Box className={styles.featureBox} key={feature.uuid}>
-                                        {feature.is_included ? <CheckCircleIcon className={styles.CheckIcon} /> : <CancelOutlinedIcon className={styles.UnCheckIcon} />}
+                                        {feature.is_included ? <CheckCircleOutlinedIcon className={styles.CheckIcon} /> : <CircleOutlinedIcon className={styles.UnCheckIcon} />}
                                         <Typography className={styles.featureName}>
                                             {feature.feature_name}
                                         </Typography>
