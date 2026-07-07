@@ -115,28 +115,31 @@ export default function GalleryAccountPage() {
                         {
                             subscriptionUserPlan?.plan ?
                                 <Box className={styles.planContainer}>
-                                    <Box>
-                                        <Typography>{subscriptionUserPlan.plan.title}</Typography>
+                                    <Box className={styles.planBoxSection}>
+                                        <Typography className={styles.planTitle}>{subscriptionUserPlan.plan.title}</Typography>
 
-                                        <Box>
-                                            <Box>
-                                                <Typography>Status</Typography>
+                                        <Box className={styles.planSection}>
+                                            <Box className={styles.planStatus}>
+                                                <Typography className={styles.planStatusTitle}>Status</Typography>
                                                 <Typography>{subscriptionStatus}</Typography>
                                             </Box>
-                                            <Box>
-                                                <Typography>Renewal</Typography>
+                                            <Box className={styles.planStatus}>
+                                                <Typography className={styles.planStatusTitle}>Renewal</Typography>
                                                 <Typography>{nextRenewal}</Typography>
                                             </Box>
-                                            <Box>
-                                                <Typography>Time Remaining</Typography>
+                                            <Box className={styles.planStatus}>
+                                                <Typography className={styles.planStatusTitle}>Time Remaining</Typography>
                                                 <Typography>{timeRemaining}</Typography>
                                             </Box>
                                         </Box>
                                     </Box>
 
-                                    <Box>
-                                        <Button>
+                                    <Box className={styles.planButtonSection}>
+                                        <Button className={styles.renewPlanButton}>
                                             Renew Now
+                                        </Button>
+                                        <Button className={styles.viewPlanButton}>
+                                            View Plans
                                         </Button>
                                     </Box>
                                 </Box>

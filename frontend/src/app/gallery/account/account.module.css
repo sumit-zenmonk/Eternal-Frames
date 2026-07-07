@@ -5,13 +5,13 @@
     flex-direction: column;
     overflow: auto;
     gap: 5%;
+    padding: 2%;
 }
 
 .topContainer,
 .bottomContainer {
     width: 100%;
     height: 30%;
-    padding: 2%;
 }
 
 .title {
@@ -63,6 +63,7 @@
     height: 100%;
     display: flex;
     gap: 1%;
+    margin-top: 2%;
 }
 
 .bottomTitles {
@@ -76,6 +77,8 @@
     display: flex;
     flex-direction: column;
     gap: 10%;
+    padding: 1% 2%;
+    background: #ffffff;
 }
 
 .planContainer {
@@ -83,6 +86,7 @@
     height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .rightContainer {
@@ -111,4 +115,62 @@
 
 .UnCheckIcon {
     fill: #6b7280;
+}
+
+.planBoxSection {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.planTitle {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.planSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10%;
+    padding: 5% 0;
+}
+
+.planStatus {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.planStatusTitle {
+    color: #5a5a5a;
+}
+
+.planButtonSection {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.viewPlanButton,
+.renewPlanButton {
+    width: fit-content;
+    border: 1px solid #794f00;
+    padding: 7%;
+    font-weight: 700;
+}
+
+.renewPlanButton {
+    color: #ffffff;
+    background: #7a4f00;
+}
+
+.viewPlanButton {
+    color: #7a4f00;
 }
