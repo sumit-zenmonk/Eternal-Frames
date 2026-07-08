@@ -11,7 +11,7 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import EventImageFormModalComp from '@/component/event-image-form/event-form-image-comp';
 import { EventImageTag } from '@/redux/feature/event/event.type';
 import Image from 'next/image';
-import { getEventsByStudio } from '@/redux/feature/event/event.action';
+import { getEventByUuid } from '@/redux/feature/event/event.action';
 
 export default function HomePage() {
     const dispatch = useAppDispatch();
@@ -23,10 +23,8 @@ export default function HomePage() {
     const cleanUuid = Array.isArray(event_uuid) ? event_uuid[0] : event_uuid;
 
     useEffect(() => {
-        if (!events || events.length === 0) {
-            dispatch(getEventsByStudio({ limit: 100, offset: 0 }));
-        }
-    }, [events, dispatch]);
+        dispatch(getEventByUuid({ event_uuid: cleanUuid || '' }));
+    }, [dispatch]);
 
     const event = (events || []).find((event) => event && event.uuid === cleanUuid);
     const eventTags = event?.images

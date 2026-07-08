@@ -103,6 +103,38 @@ export const getEventsByStudio = createAsyncThunk<
     }
 );
 
+export const getEventByUuid = createAsyncThunk<
+    { message: string, data: Event },
+    { event_uuid: string },
+    { state: RootState }
+>(
+    "event/images/listing/get",
+    async (
+        { event_uuid },
+        { getState, rejectWithValue }
+    ) => {
+        try {
+            const token = getState().authReducer.token || "";
+            const res = await fetch(`${BACKEND_URL}/api/v1/event/${event_uuid}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                },
+            });
+
+            const result = await res.json();
+            if (!res.ok) {
+                throw new Error(result.message);
+            }
+
+            return result;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 export const uploadEventImage = createAsyncThunk<
     any,
     any,

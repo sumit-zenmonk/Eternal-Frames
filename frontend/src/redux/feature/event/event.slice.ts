@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { EventState } from "./event.type";
-import { createEvent, createEventImage, deleteEvent, getEventsByStudio } from "./event.action";
+import { createEvent, createEventImage, deleteEvent, getEventsByStudio, getEventByUuid } from "./event.action";
 
 const initialState: EventState = {
     events: [],
@@ -91,6 +91,29 @@ const eventSlice = createSlice({
 
             })
             .addCase(deleteEvent.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+            .addCase(getEventByUuid.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getEventByUuid.fulfilled, (state, action) => {
+                const { data, message } = action.payload;
+                state.loading = false;
+                state.error = null;
+                const eventUuid = data.uuid;
+                if (eventUuid && state.events) {
+                    const index = state.events.findIndex((event) => event.uuid === eventUuid);
+                    if (index !== -1) {
+                        state.events[index] = data;
+                        state.eventTotalDocuments = state.eventTotalDocuments + 1;
+                    } else {
+                        state.events = [data, ...state.events];
+                    }
+                }
+            })
+            .addCase(getEventByUuid.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
             });
