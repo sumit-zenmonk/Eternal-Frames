@@ -5,6 +5,7 @@ import { GetEventListingModule } from "./get-event-listing/get-event-listing.mod
 import { DeleteEventModule } from "./delete-event/delete-event.module";
 import { CreateEventImageModule } from "./create-event-image/create-event-image.module";
 import { GetEventByUuidModule } from "./get-event-by-uuid/get-event-listing.module";
+import { DeleteEventImageModule } from "./delete-event-image/delete-event.module";
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { GetEventByUuidModule } from "./get-event-by-uuid/get-event-listing.modu
         DeleteEventModule,
         CreateEventImageModule,
         GetEventByUuidModule,
+        DeleteEventImageModule,
         RouterModule.register([
             {
                 path: 'event',
@@ -22,6 +24,7 @@ import { GetEventByUuidModule } from "./get-event-by-uuid/get-event-listing.modu
                     { path: '', module: DeleteEventModule },
                     { path: '', module: GetEventByUuidModule },
                     { path: 'image', module: CreateEventImageModule },
+                    { path: 'image', module: DeleteEventImageModule },
                 ],
             },
         ]),

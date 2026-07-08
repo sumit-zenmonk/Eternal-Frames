@@ -11,11 +11,15 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import EventImageFormModalComp from '@/component/event-image-form/event-form-image-comp';
 import { EventImageTag } from '@/redux/feature/event/event.type';
 import Image from 'next/image';
-import { getEventByUuid } from '@/redux/feature/event/event.action';
+import { deleteEventImage, getEventByUuid } from '@/redux/feature/event/event.action';
+import { UserRoleEnum } from '@/redux/feature/auth/user.enum';
+import { enqueueSnackbar } from 'notistack';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 export default function HomePage() {
     const dispatch = useAppDispatch();
     const { events } = useAppSelector((state: RootState) => state.eventReducer);
+    const { user } = useAppSelector((state: RootState) => state.authReducer);
     const [openCreateEventImageModal, setOpenCreateEventImageModal] = useState(false);
     const [selectedTagUuid, setSelectedTagUuid] = useState<string | null>(null);
 
@@ -57,6 +61,19 @@ export default function HomePage() {
     const handleTagClick = (tagUuid: string) => {
         setSelectedTagUuid((prev) => (prev === tagUuid ? null : tagUuid));
     };
+
+    const handleDeleteImage = async (event_image_uuid: string) => {
+        try {
+            if (user?.role != UserRoleEnum.STUDIO) {
+                enqueueSnackbar("Only Studio can delete event image", { variant: "error" });
+            }
+
+            await dispatch(deleteEventImage({ event_uuid: cleanUuid || '', event_image_uuid })).unwrap();
+        } catch (error: any) {
+            enqueueSnackbar(error, { variant: "error" });
+            console.log(error);
+        }
+    }
 
     return (
         <Box className={styles.container}>
@@ -121,14 +138,20 @@ export default function HomePage() {
             <Box className={styles.imagesBox}>
                 {displayedImages.length ? (
                     displayedImages.map((image, index) => (
-                        <Image
-                            key={index}
-                            src={image.image_url || ''}
-                            alt={image.image_url || ''}
-                            width={100}
-                            height={100}
-                            className={styles.eventImage}
-                        />
+                        <Box className={styles.eventImageBox}>
+                            <Image
+                                key={index}
+                                src={image.image_url || ''}
+                                alt={image.image_url || ''}
+                                width={100}
+                                height={100}
+                                className={styles.eventImage}
+                            />
+                            {user && user.role === UserRoleEnum.STUDIO && <RemoveCircleIcon
+                                onClick={() => handleDeleteImage(image.uuid)}
+                                className={styles.eventImageDeleteIcon}
+                            />}
+                        </Box>
                     ))
                 ) : (
                     <Typography>
