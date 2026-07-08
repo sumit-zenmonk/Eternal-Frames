@@ -25,8 +25,11 @@ export class UpdateUserService {
             throw new BadRequestException("User Not Found");
         }
         const isEmailAvailable = await this.userRepository.findByEmail(body.email);
+        if (isEmailAvailable && isEmailAvailable.uuid === userUuid) {
+            throw new BadRequestException("You already have this email");
+        }
         if (isEmailAvailable) {
-            throw new BadRequestException("Email Not Available right now");
+            throw new BadRequestException("Email is in use right now");
         }
 
         await this.userRepository.updateUser(userUuid, body);
