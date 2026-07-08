@@ -138,9 +138,8 @@ export default function HomePage() {
             <Box className={styles.imagesBox}>
                 {displayedImages.length ? (
                     displayedImages.map((image, index) => (
-                        <Box className={styles.eventImageBox}>
+                        <Box className={styles.eventImageBox} key={index}   >
                             <Image
-                                key={index}
                                 src={image.image_url || ''}
                                 alt={image.image_url || ''}
                                 width={100}
