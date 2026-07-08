@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import styles from './plan.module.css';
-import HomeHeaderComp from '@/component/common/header/header';
+import HomeHeaderComp from '@/component/header/header';
 import SubscriptionPlanComp from '@/component/subscription-plan/subscription-plan';
-import NavButton from '@/component/common/nav-button/nav-button';
+import NavButton from '@/component/nav-button/nav-button';
 
 export default function SubscriptionPlanPage() {
 

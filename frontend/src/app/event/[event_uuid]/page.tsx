@@ -2,7 +2,7 @@
 
 import { Box, Button, Typography, } from '@mui/material';
 import styles from './event.module.css';
-import HomeHeaderComp from '@/component/common/header/header';
+import HomeHeaderComp from '@/component/header/header';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks.ts';
 import { RootState } from '@/redux/store';
 import { useParams } from 'next/navigation';

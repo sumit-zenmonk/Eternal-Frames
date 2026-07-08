@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import styles from './home.module.css';
-import HomeHeaderComp from '@/component/common/header/header';
+import HomeHeaderComp from '@/component/header/header';
 import Image from 'next/image';
 import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
@@ -8,7 +8,7 @@ import HighQualityIcon from '@mui/icons-material/HighQuality';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
-import NavButton from '@/component/common/nav-button/nav-button';
+import NavButton from '@/component/nav-button/nav-button';
 
 export default function HomePage() {
     return (

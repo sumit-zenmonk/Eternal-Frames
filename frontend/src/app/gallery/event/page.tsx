@@ -17,7 +17,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { UserRoleEnum } from '@/redux/feature/auth/user.enum';
-import LinkShareComp from '@/component/common/link-share-comp/link-share-comp';
+import LinkShareComp from '@/component/link-share-comp/link-share-comp';
 
 export default function GalleryEventPage() {
     const router = useRouter();
