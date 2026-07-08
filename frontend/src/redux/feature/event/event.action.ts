@@ -232,3 +232,32 @@ export const deleteEventImage = createAsyncThunk<
         }
     }
 );
+
+export const renewCurrentSubscription = createAsyncThunk<
+    { message: string },
+    void,
+    { state: RootState }
+>(
+    "event/create",
+    async (undefined, { getState, rejectWithValue }) => {
+        try {
+            const token = getState().authReducer.token || "";
+            const res = await fetch(`${BACKEND_URL}/api/v1/subscription`, {
+                method: "Put",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                },
+            });
+
+            const result = await res.json();
+            if (!res.ok) {
+                throw new Error(result.message);
+            }
+
+            return result;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);

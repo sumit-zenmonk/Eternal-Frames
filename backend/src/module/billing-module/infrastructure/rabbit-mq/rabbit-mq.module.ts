@@ -17,6 +17,6 @@ import { UserRepository } from '../repository/user.repository';
         InboxRepository,
         UserRepository,
     ],
-    exports: [RabbitMQService, ProcessorsService],
+    exports: [],
 })
 export class BillingRabbitMQModule { }

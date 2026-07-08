@@ -9,6 +9,7 @@ import { UserRepository } from '../repository/user.repository';
 import { SubscriptionUserRepository } from '../repository/subscription-user.repository';
 import { EventRabbitMQConsumerInitializer } from './rabbit-mq-consumer-initializer';
 import { CancelUserSubscriptionPlanService } from '../../feature/subscription-user/cancel-user-subscription/cancel-user-subscription.handler';
+import { RenewUserSubscriptionPlanService } from '../../feature/subscription-user/renew-user-subscription/renew-user-subscription.handler';
 
 @Module({
     providers: [
@@ -19,10 +20,11 @@ import { CancelUserSubscriptionPlanService } from '../../feature/subscription-us
         UpdateUserService,
         RegisterSubscriptionUserService,
         CancelUserSubscriptionPlanService,
+        RenewUserSubscriptionPlanService,
         InboxRepository,
         UserRepository,
         SubscriptionUserRepository,
     ],
-    exports: [RabbitMQService, ProcessorsService],
+    exports: [],
 })
 export class EventRabbitMQModule { }

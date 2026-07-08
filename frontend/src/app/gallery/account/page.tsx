@@ -17,6 +17,7 @@ import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { calculateSubscriptionExpiry } from '@/utils/subscription';
 import { useRouter } from 'next/navigation';
+import { renewCurrentSubscription } from '@/redux/feature/event/event.action';
 
 export default function GalleryAccountPage() {
     const router = useRouter();
@@ -54,6 +55,17 @@ export default function GalleryAccountPage() {
         try {
             await dispatch(cancelCurrentSubscriptionPlan()).unwrap();
             enqueueSnackbar("Subscription Plan cancelled Success", { variant: "success" });
+        } catch (error) {
+            enqueueSnackbar(String(error || "Something went wrong"), { variant: "error" });
+            console.log(error)
+        }
+    }
+
+    const handleRenewSubscription = async () => {
+        try {
+            await dispatch(renewCurrentSubscription()).unwrap();
+            await dispatch(getCurrentSubscriptionPlan()).unwrap();
+            enqueueSnackbar("Subscription Plan renwed Success", { variant: "success" });
         } catch (error) {
             enqueueSnackbar(String(error || "Something went wrong"), { variant: "error" });
             console.log(error)
@@ -149,7 +161,7 @@ export default function GalleryAccountPage() {
 
                                     <Box className={styles.planOptions}>
                                         <Box className={styles.planButtonSection}>
-                                            <Button className={styles.renewPlanButton}>
+                                            <Button className={styles.renewPlanButton} onClick={async () => await handleRenewSubscription()}>
                                                 Renew Now
                                             </Button>
                                             <Button className={styles.viewPlanButton} onClick={() => { router.push('/subscription/plan') }}>
