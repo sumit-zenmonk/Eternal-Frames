@@ -100,13 +100,15 @@ export default function GalleryEventPage() {
                 >
                     <Box className={styles.eventWrapper}>
                         {events.length ? events.map((event: Event, idx: number) => {
+                            if (!event) return;
+
                             return (
                                 <Box
                                     key={idx}
                                     className={styles.card}
                                 >
                                     <Box className={styles.ImageBox}>
-                                        <Image src={event.image_url || ''} alt={event.image_url || ''} width={100} height={100} className={styles.eventImage} />
+                                        <Image src={event?.image_url || ''} alt={event?.image_url || ''} width={100} height={100} className={styles.eventImage} />
                                     </Box>
 
                                     <Box className={styles.eventInfoBox}>
