@@ -8,7 +8,9 @@ import {
     FacebookIcon,
     TwitterIcon,
     LinkedinIcon,
-    WhatsappIcon
+    WhatsappIcon,
+    XShareButton,
+    XIcon,
 } from 'react-share';
 
 interface Props {
@@ -57,6 +59,10 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
                 <WhatsappShareButton url={shareUrl} title={title} separator=":: " onClick={handlePick} className={styles.socialButton}>
                     <WhatsappIcon size={40} round={true} />
                 </WhatsappShareButton>
+
+                <XShareButton url={shareUrl} title={title}  onClick={handlePick} className={styles.socialButton}>
+                    <XIcon size={32} round />
+                </XShareButton>
             </Box>
         </Dialog>
     );
