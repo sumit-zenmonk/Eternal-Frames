@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import styles from './plan.module.css';
 import HomeHeaderComp from '@/component/header/header';
-import SubscriptionPlanComp from '@/component/subscription-plan/subscription-plan';
+import SubscriptionPlanListingComp from '@/component/subscription-plan-listing/subscription-plan-listing';
 import NavButton from '@/component/nav-button/nav-button';
 
 export default function SubscriptionPlanPage() {
@@ -24,7 +24,7 @@ export default function SubscriptionPlanPage() {
                 </Box>
 
                 <Box className={styles.planBox}>
-                    <SubscriptionPlanComp />
+                    <SubscriptionPlanListingComp />
                 </Box>
 
                 <Box className={styles.footer}>

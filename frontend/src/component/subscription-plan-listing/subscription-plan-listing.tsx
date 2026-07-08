@@ -3,7 +3,7 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts";
 import { RootState } from "@/redux/store";
 import { Box, Button, Card, CircularProgress, Typography } from '@mui/material';
-import styles from './subscription-plan.module.css';
+import styles from './subscription-plan-listing.module.css';
 import { useEffect, useState } from "react";
 import { getRazorPlanLinkForSubscription, getSubscriptionPlan, studioBuySubscriptionWebhook } from "@/redux/feature/subscription/subscription-action";
 import { enqueueSnackbar } from "notistack";
@@ -13,7 +13,7 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import { useRouter } from "next/navigation";
 
-export default function SubscriptionPlanComp() {
+export default function SubscriptionPlanListingComp() {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const [offset, setOffset] = useState(Number(process.env.NEXT_PUBLIC_PAGE_OFFSET) || 0);
