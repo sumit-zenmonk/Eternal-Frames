@@ -34,6 +34,7 @@
     display: flex;
     flex-direction: column;
     padding: 5%;
+    gap: 2%;
 }
 
 .tabBox {
@@ -45,12 +46,7 @@
     padding-bottom: 10%;
 }
 
-.button:hover,
-.logoutbtn:hover {
-    color: #AF8B47;
-    background: #ece6de;
-}
-
+.activeButton,
 .button,
 .logoutbtn {
     font-weight: 700;
@@ -58,6 +54,17 @@
     border-radius: 8px;
     color: #585858;
     padding: 5%;
+}
+
+.activeButton {
+    color: #AF8B47;
+    background: #ece6de;
+}
+
+.button:hover,
+.logoutbtn:hover {
+    color: #181818;
+    background: #ece6de;
 }
 
 .logoutbtn:hover {
