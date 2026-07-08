@@ -61,6 +61,7 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
                     <WhatsappIcon size={iconSize} round={true} />
                 </WhatsappShareButton>
 
+                {/* X */}
                 <XShareButton url={shareUrl} title={title} onClick={handlePick} className={styles.socialButton}>
                     <XIcon size={iconSize} round />
                 </XShareButton>
