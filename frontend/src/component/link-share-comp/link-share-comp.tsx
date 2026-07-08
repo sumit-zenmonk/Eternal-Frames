@@ -22,6 +22,7 @@ interface Props {
 export default function LinkShareComp({ open, onClose, data }: Props) {
     const shareUrl = data.shareUrl;
     const title = data.title;
+    const iconSize = 45;
 
     const handlePick = () => {
         onClose();
@@ -41,27 +42,27 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
 
             <Box className={styles.socialWrapper}>
                 {/* Facebook */}
-                <FacebookShareButton url={shareUrl} hashtag="#reactjs" onClick={handlePick} className={styles.socialButton}>
-                    <FacebookIcon size={40} round={true} />
+                <FacebookShareButton url={shareUrl} onClick={handlePick} className={styles.socialButton}>
+                    <FacebookIcon size={iconSize} round={true} />
                 </FacebookShareButton>
 
                 {/* X / Twitter */}
                 <TwitterShareButton url={shareUrl} title={title} onClick={handlePick} className={styles.socialButton}>
-                    <TwitterIcon size={40} round={true} />
+                    <TwitterIcon size={iconSize} round={true} />
                 </TwitterShareButton>
 
                 {/* LinkedIn */}
                 <LinkedinShareButton url={shareUrl} title={title} onClick={handlePick} className={styles.socialButton}>
-                    <LinkedinIcon size={40} round={true} />
+                    <LinkedinIcon size={iconSize} round={true} />
                 </LinkedinShareButton>
 
                 {/* WhatsApp */}
                 <WhatsappShareButton url={shareUrl} title={title} separator=":: " onClick={handlePick} className={styles.socialButton}>
-                    <WhatsappIcon size={40} round={true} />
+                    <WhatsappIcon size={iconSize} round={true} />
                 </WhatsappShareButton>
 
-                <XShareButton url={shareUrl} title={title}  onClick={handlePick} className={styles.socialButton}>
-                    <XIcon size={32} round />
+                <XShareButton url={shareUrl} title={title} onClick={handlePick} className={styles.socialButton}>
+                    <XIcon size={iconSize} round />
                 </XShareButton>
             </Box>
         </Dialog>
