@@ -124,7 +124,6 @@ export default function HomePage() {
                                     style={{
                                         cursor: 'pointer',
                                         fontWeight: isSelected ? 'bold' : 'normal',
-                                        opacity: selectedTagUuid && !isSelected ? 0.6 : 1
                                     }}
                                 >
                                     #{tag.tag_name}
