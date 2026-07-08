@@ -42,7 +42,7 @@ export default function HomePage() {
 
                 <Box className={styles.rightbusinessInfoBox}>
                     <Box className={styles.buisnessInfoImageBox}>
-                        <Image src={'/home-page/rightBusinessInfo.jpg'} alt='rightBusinessInfo.jpg' width={100} height={100} className={styles.buisnessInfoImage} />
+                        <Image src={'/home-page/screen.png'} alt='screen.png' width={100} height={100} className={styles.buisnessInfoImage} />
                     </Box>
 
                     <Box className={styles.buisnessInfoImageTagBox}>
