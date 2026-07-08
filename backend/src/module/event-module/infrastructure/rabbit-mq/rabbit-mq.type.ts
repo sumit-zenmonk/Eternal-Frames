@@ -31,6 +31,9 @@ export interface SubscriptionUserRenewedMQEventPayload {
     uuid: string;
     user_uuid: string;
     plan_uuid: string;
+    created_at?: Date;
+    updated_at?: Date;
+    deleted_at?: Date;
 }
 
 export interface UserUpdatedMQEventPayload {

@@ -30,7 +30,7 @@ export class RenewUserSubscriptionPlanService {
             exchange_name: this.BILLING_EXCHANGE,
             routing_key: '',
             event_name: SubscriptionUserPublishEventEnum.SUBSCRIPTION_USER_RENEWED,
-            message_payload: { uuid: renewedSubscription.uuid, user_uuid: req.user.uuid, plan_uuid: isActivePlanExists.plan_uuid },
+            message_payload: renewedSubscription,
         });
 
         return;
