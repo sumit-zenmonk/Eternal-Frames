@@ -87,10 +87,10 @@ export default function EventImageFormModalComp({ isOpen, onClose, event_uuid }:
             <Box className={styles.modalContainer}>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                     <Box className={styles.field}>
-                        <InputLabel htmlFor={`${2}-input`} className={styles.label}>Tag Name</InputLabel>
+                        <InputLabel htmlFor={`tag-input`} className={styles.label}>Tag Name</InputLabel>
 
                         <TextField
-                            id={`${2}-input`}
+                            id={`tag-input`}
                             type="description"
                             placeholder="wedding"
                             fullWidth

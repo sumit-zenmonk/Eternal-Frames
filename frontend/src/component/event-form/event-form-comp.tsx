@@ -87,10 +87,10 @@ export default function EventFormModalComp({ isOpen, onClose }: EventFormModalPr
             <Box className={styles.modalContainer}>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                     <Box className={styles.field}>
-                        <InputLabel htmlFor={`${2}-input`} className={styles.label}>Title</InputLabel>
+                        <InputLabel htmlFor={`title-input`} className={styles.label}>Title</InputLabel>
 
                         <TextField
-                            id={`${2}-input`}
+                            id={`title-input`}
                             type="title"
                             placeholder="wedding event"
                             fullWidth
@@ -105,10 +105,10 @@ export default function EventFormModalComp({ isOpen, onClose }: EventFormModalPr
                     </Box>
 
                     <Box className={styles.field}>
-                        <InputLabel htmlFor={`${2}-input`} className={styles.label}>Description</InputLabel>
+                        <InputLabel htmlFor={`description-input`} className={styles.label}>Description</InputLabel>
 
                         <TextField
-                            id={`${2}-input`}
+                            id={`description-input`}
                             type="description"
                             multiline
                             placeholder="wedding event is wonderful at location organized by somewhere and by whom and some related description...."
@@ -124,10 +124,10 @@ export default function EventFormModalComp({ isOpen, onClose }: EventFormModalPr
                     </Box>
 
                     <Box className={styles.field}>
-                        <InputLabel htmlFor={`${2}-input`} className={styles.label}>Location</InputLabel>
+                        <InputLabel htmlFor={`location-input`} className={styles.label}>Location</InputLabel>
 
                         <TextField
-                            id={`${2}-input`}
+                            id={`location-input`}
                             type="location"
                             placeholder="34 Street NewYork"
                             fullWidth
