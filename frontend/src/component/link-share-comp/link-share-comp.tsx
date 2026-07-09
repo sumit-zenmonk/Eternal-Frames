@@ -32,7 +32,7 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
         <Dialog open={open} onClose={onClose} className={styles.container}>
             <Box className={styles.header}>
                 <Typography variant="h4" className={styles.heading}>
-                    Share Room Link
+                    Share With Friends
                 </Typography>
 
                 <Typography className={styles.subHeading}>
