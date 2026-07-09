@@ -40,7 +40,7 @@ export default function EventImageFormModalComp({ isOpen, onClose, event_uuid }:
             let progress = 0;
 
             const interval = setInterval(() => {
-                progress += 10;
+                progress += 30;
                 onProgress(progress);
 
                 if (progress >= 100) {
@@ -118,7 +118,7 @@ export default function EventImageFormModalComp({ isOpen, onClose, event_uuid }:
                         acceptsOnly="image/*"
                         onSuccessfulUpload={(fileUpload: any) => {
                             setFiles((prev) => {
-                                if (prev.length > MAX_FILES) {
+                                if (prev.length >= MAX_FILES) {
                                     console.log(prev, prev.length, MAX_FILES);
                                     enqueueSnackbar(`You can't upload more than ${MAX_FILES} images`, { variant: "warning" });
                                     return prev;
