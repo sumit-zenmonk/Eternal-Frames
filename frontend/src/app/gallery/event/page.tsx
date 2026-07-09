@@ -22,7 +22,7 @@ import LinkShareComp from '@/component/link-share-comp/link-share-comp';
 export default function GalleryEventPage() {
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const [selectedLink, setSelectedLink] = useState<string | null>(null);
+    const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
     const [openCreateEventModal, setOpenCreateEventModal] = useState(false);
     const [offset, setOffset] = useState(Number(process.env.NEXT_PUBLIC_PAGE_OFFSET) || 0);
     const limit = Number(process.env.NEXT_PUBLIC_PAGE_LIMIT) || 10;
@@ -31,7 +31,7 @@ export default function GalleryEventPage() {
 
     const title = 'Awesome Page please visit once';
     const FRONTEND_URL = process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
-    const shareUrl = `${FRONTEND_URL}/event/${selectedLink}`;
+    const shareUrl = `${FRONTEND_URL}/event/${selectedEvent}`;
 
     useEffect(() => {
         dispatch(getEventsByStudio({ limit, offset: 0, })).unwrap();
@@ -130,7 +130,7 @@ export default function GalleryEventPage() {
                                             <Button
                                                 startIcon={<ShareOutlinedIcon />}
                                                 className={styles.footerButton}
-                                                onClick={() => setSelectedLink(event.uuid)}
+                                                onClick={() => setSelectedEvent(event.uuid)}
                                             >
                                                 Share
                                             </Button>
@@ -150,7 +150,7 @@ export default function GalleryEventPage() {
                 </InfiniteScroll>
             </Box >
 
-            <LinkShareComp open={Boolean(selectedLink)} onClose={() => setSelectedLink(null)} data={{ shareUrl: shareUrl, title: title }} />
+            <LinkShareComp open={Boolean(selectedEvent)} onClose={() => setSelectedEvent(null)} data={{ shareUrl: shareUrl, title: title }} />
             <EventFormModalComp isOpen={openCreateEventModal} onClose={handleAddEventClose} />
         </Box>
     );
