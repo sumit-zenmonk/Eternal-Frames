@@ -32,9 +32,8 @@ export default function GalleryEventPage() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const title = 'Awesome Page please visit once';
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8090";
-    const shareUrl = `${BACKEND_URL}${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
-
+    const FRONTEND_URL = process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
+    const shareUrl = `${FRONTEND_URL}${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
 
     useEffect(() => {
         dispatch(getEventsByStudio({ limit, offset: 0, })).unwrap();

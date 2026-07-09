@@ -1,4 +1,4 @@
-import { Box, Dialog, Typography } from '@mui/material';
+import { Box, Button, Dialog, Divider, Typography } from '@mui/material';
 import styles from './link-share-comp.module.css';
 import {
     FacebookShareButton,
@@ -12,6 +12,9 @@ import {
     XShareButton,
     XIcon,
 } from 'react-share';
+import QRCode from "react-qr-code";
+import { useCallback, useRef } from 'react';
+import { toPng } from 'html-to-image';
 
 interface Props {
     open: boolean;
@@ -23,10 +26,26 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
     const shareUrl = data.shareUrl;
     const title = data.title;
     const iconSize = 45;
+    const qrRef = useRef<HTMLDivElement>(null);
 
     const handlePick = () => {
         onClose();
     }
+
+    const downloadQR = useCallback(() => {
+        if (qrRef.current === null) return;
+
+        toPng(qrRef.current, { cacheBust: true })
+            .then((dataUrl) => {
+                const link = document.createElement('a');
+                link.download = 'share-link.png';
+                link.href = dataUrl;
+                link.click();
+            })
+            .catch((err: any) => {
+                console.error('Oops, something went wrong!', err);
+            });
+    }, [qrRef]);
 
     return (
         <Dialog open={open} onClose={onClose} className={styles.container}>
@@ -65,6 +84,23 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
                 <XShareButton url={shareUrl} title={title} onClick={handlePick} className={styles.socialButton}>
                     <XIcon size={iconSize} round />
                 </XShareButton>
+            </Box>
+
+            <Divider />
+
+            <Box className={styles.QrCodeWrapper}>
+                <Box className={styles.QrCodeBox} ref={qrRef}>
+                    <QRCode
+                        size={200}
+                        value={shareUrl}
+                        viewBox={`0 0 256 256`}
+                        className={styles.QrCode}
+                    />
+                </Box>
+
+                <Button onClick={downloadQR} style={{ padding: "10px 20px", cursor: "pointer" }}>
+                    Download PNG
+                </Button>
             </Box>
         </Dialog>
     );
