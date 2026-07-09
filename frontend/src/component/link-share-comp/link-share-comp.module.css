@@ -45,22 +45,25 @@
 }
 
 .socialButton:hover {
-    box-shadow: 0 0 0 5px rgb(233, 233, 233);
+    box-shadow: 0 0 0 5px rgb(226, 226, 226);
+}
+
+.divider {
+    margin: 10px 0;
 }
 
 .QrCodeWrapper {
-    width: 50vmin;
-    height: 50vmin;
+    max-width: 50vmin;
+    max-height: 50vmin;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-top: 2%; */
     padding: 2%;
 }
 
 .QrCodeBox {
-    width: 100%;
+    width: 80%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -69,10 +72,18 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 2%;
+    border-radius: 16px;
+    box-shadow: 0 0 1px 0 rgb(78, 78, 78);
 }
 
 .QrCode {
-    width: 30%;
+    width: 28%;
     height: 30%;
-    margin-top: 37%;
+    margin-top: 40%;
+    padding: 2%;
+}
+
+.QrCodeBox:hover {
+    box-shadow: 0 0 5px 1px rgb(124, 124, 124);
 }

@@ -86,7 +86,7 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
                 </XShareButton>
             </Box>
 
-            <Divider />
+            <Divider className={styles.divider}> OR </Divider>
 
             <Box className={styles.QrCodeWrapper}>
                 <Box className={styles.QrCodeBox} ref={qrRef}>
