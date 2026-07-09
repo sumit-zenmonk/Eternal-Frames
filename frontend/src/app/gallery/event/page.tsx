@@ -29,7 +29,7 @@ export default function GalleryEventPage() {
     const { eventTotalDocuments, events } = useAppSelector((state: RootState) => state.eventReducer);
     const { user } = useAppSelector((state: RootState) => state.authReducer);
 
-    const title = 'Awesome Page please visit once';
+    const title = 'Checkout shared event in @event.frames';
     const FRONTEND_URL = process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
     const shareUrl = `${FRONTEND_URL}/event/${selectedEvent}`;
 
