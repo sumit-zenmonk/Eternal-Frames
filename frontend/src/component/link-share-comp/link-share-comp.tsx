@@ -14,8 +14,9 @@ import {
 } from 'react-share';
 import QRCode from "react-qr-code";
 import { useCallback, useRef } from 'react';
-import { toPng } from 'html-to-image';
+import * as htmlToImage from 'html-to-image';
 
+type ImageFormat = 'png' | 'jpeg' | 'svg';
 interface Props {
     open: boolean;
     onClose: () => void;
@@ -32,19 +33,28 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
         onClose();
     }
 
-    const downloadQR = useCallback(() => {
-        if (qrRef.current === null) return;
+    const handleExport = useCallback(async (format: ImageFormat) => {
+        if (!qrRef.current) return;
 
-        toPng(qrRef.current, { cacheBust: true })
-            .then((dataUrl) => {
-                const link = document.createElement('a');
-                link.download = 'share-link.png';
-                link.href = dataUrl;
-                link.click();
-            })
-            .catch((err: any) => {
-                console.error('Oops, something went wrong!', err);
-            });
+        const element = qrRef.current;
+        let dataUrl = '';
+
+        try {
+            if (format === 'png') {
+                dataUrl = await htmlToImage.toPng(element);
+            } else if (format === 'jpeg') {
+                dataUrl = await htmlToImage.toJpeg(element, { quality: 0.95 });
+            } else if (format === 'svg') {
+                dataUrl = await htmlToImage.toSvg(element);
+            } else { return; }
+
+            const link = document.createElement('a');
+            link.download = `exported-page.${format}`;
+            link.href = dataUrl;
+            link.click();
+        } catch (error) {
+            console.error('Failed to generate image:', error);
+        }
     }, [qrRef]);
 
     return (
@@ -96,11 +106,23 @@ export default function LinkShareComp({ open, onClose, data }: Props) {
                         viewBox={`0 0 256 256`}
                         className={styles.QrCode}
                     />
+
+                    <Typography className={styles.boxTitle}>{title}</Typography>
                 </Box>
 
-                <Button onClick={downloadQR} style={{ padding: "10px 20px", cursor: "pointer" }}>
-                    Download PNG
-                </Button>
+                <Box className={styles.QrCodeButtonBox}>
+                    <Button onClick={() => handleExport('png')} className={styles.qrButton}>
+                        PNG
+                    </Button>
+
+                    <Button onClick={() => handleExport('jpeg')} className={styles.qrButton}>
+                        Jpeg
+                    </Button>
+
+                    <Button onClick={() => handleExport('svg')} className={styles.qrButton}>
+                        SVG
+                    </Button>
+                </Box>
             </Box>
         </Dialog>
     );
