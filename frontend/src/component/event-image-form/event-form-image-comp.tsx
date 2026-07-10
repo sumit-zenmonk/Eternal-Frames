@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks.ts";
 import { enqueueSnackbar } from "notistack";
 import { createEventImage, uploadEventImage } from "@/redux/feature/event/event.action";
-import { MultiFileUpload } from "mui-file-upload";
+import { FileUpload, MultiFileUpload } from "mui-file-upload";
 import CloseIcon from "@mui/icons-material/Close";
 import { createEventImageSchema, CreateEventImageSchemaType } from "@/schemas/event-image-create";
 
@@ -107,7 +107,7 @@ export default function EventImageFormModalComp({ isOpen, onClose, event_uuid }:
                     <MultiFileUpload
                         uploadService={uploadService}
                         acceptsOnly="image/*"
-                        onSuccessfulUpload={(fileUpload: any) => {
+                        onSuccessfulUpload={(fileUpload: FileUpload<string>) => {
                             setFiles((prev) => {
                                 if (prev.length >= MAX_FILES) {
                                     console.log(prev, prev.length, MAX_FILES);
