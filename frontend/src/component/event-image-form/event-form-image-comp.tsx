@@ -110,7 +110,6 @@ export default function EventImageFormModalComp({ isOpen, onClose, event_uuid }:
                         onSuccessfulUpload={(fileUpload: FileUpload<string>) => {
                             setFiles((prev) => {
                                 if (prev.length >= MAX_FILES) {
-                                    console.log(prev, prev.length, MAX_FILES);
                                     enqueueSnackbar(`You can't upload more than ${MAX_FILES} images`, { variant: "warning" });
                                     return prev;
                                 }
