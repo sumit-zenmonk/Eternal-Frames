@@ -142,15 +142,15 @@ export default function EventFormModalComp({ isOpen, onClose }: EventFormModalPr
                     </Box>
 
                     <MultiFileUpload
-                        // sx={{
-                        //     sx: {
-                        //         width: "90%",
-                        //         height: "100%",
-                        //         display: "flex",
-                        //         justifyContent: "center",
-                        //         alignItems: "center"
-                        //     }
-                        // }}
+                        sx={{
+                            sx: {
+                                width: "100%",
+                                height: "100%",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }
+                        }}
                         uploadService={uploadService}
                         acceptsOnly="image/*"
                         onSuccessfulUpload={(fileUpload: any) => {
