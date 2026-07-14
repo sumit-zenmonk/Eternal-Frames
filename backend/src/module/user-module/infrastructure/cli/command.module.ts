@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
-import { DispatchUserOutboxCommand } from "./command/dispatch.user.outbox.command";
-import * as UserCronModule from "src/module/user-module/infrastructure/cron/cron.module";
+import { UserOutboxEntryPublisherCommand } from "./command/outbox-entry-publisher.command";
+import { CronModule } from "../cron/cron.module";
 
 @Module({
     imports: [
-        UserCronModule.CronModule,
+        CronModule,
     ],
-    providers: [DispatchUserOutboxCommand]
+    providers: [UserOutboxEntryPublisherCommand]
 })
 export class CommandModule { }

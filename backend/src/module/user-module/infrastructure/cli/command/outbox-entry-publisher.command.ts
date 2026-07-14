@@ -5,7 +5,7 @@ import { UserOutboxEntryPublisherCronService } from '../../cron/outbox.entry.pub
   name: 'dispatch-user-outbox',
   description: 'Dispatch user outbox entries',
 })
-export class DispatchUserOutboxCommand extends CommandRunner {
+export class UserOutboxEntryPublisherCommand extends CommandRunner {
   constructor(
     private readonly userOutboxEntryPublisherCronService: UserOutboxEntryPublisherCronService,
   ) {
