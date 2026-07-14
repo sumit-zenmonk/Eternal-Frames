@@ -1,5 +1,5 @@
 import { Command, CommandRunner } from 'nest-commander';
-import { UserOutboxEntryPublisherCronService } from '../../../../module/user-module/infrastructure/cron/outbox.entry.publisher/outbox.entry.publisher';
+import { UserOutboxEntryPublisherCronService } from '../../cron/outbox.entry.publisher/outbox.entry.publisher';
 
 @Command({
   name: 'dispatch-user-outbox',
