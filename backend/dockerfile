@@ -47,7 +47,7 @@ FROM ${NODE_IMAGE} AS production
 # RUN npm prune --omit=dev
 
 # Install security updates
-RUN apk update && apk upgrade --no-cache
+# RUN apk update && apk upgrade --no-cache
 
 WORKDIR /app
 
