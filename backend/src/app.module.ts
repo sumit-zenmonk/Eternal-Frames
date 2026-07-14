@@ -8,9 +8,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { DataSourceOptions } from 'typeorm';
 
 // Common Module
-import { AuthenticateMiddleware } from './common/infrastruture/middleware/authenticate.middleware';
-import { createTransactionalDataSource } from './common/infrastruture/services/typeorm.transactional';
-import { RabbitMQCommonModule } from './common/infrastruture/rabbit-mq/rabbit-mq.module';
+import { AuthenticateMiddleware } from './common/infrastructure/middleware/authenticate.middleware';
+import { createTransactionalDataSource } from './common/infrastructure/services/typeorm.transactional';
+import { RabbitMQCommonModule } from './common/infrastructure/rabbit-mq/rabbit-mq.module';
 
 // User Module
 import { userDataSource } from './module/user-module/infrastructure/database/data-source';
