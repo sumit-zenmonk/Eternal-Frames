@@ -12,7 +12,8 @@ export class BillingOutboxEntryPublisherCommand extends CommandRunner {
     super();
   }
 
-  async run() {
+  async run(): Promise<void> {
     await this.billingOutboxEntryPublisherCronService.handleCron();
+    process.exit(0);
   }
 }
