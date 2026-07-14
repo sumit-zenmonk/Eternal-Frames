@@ -46,7 +46,7 @@ import * as EventCronModule from './module/event-module/infrastructure/cron/cron
       secret: process.env.JWT_REGISTER_SECRET,
       // signOptions: { expiresIn: '60m' },
     }),
-    // ScheduleModule.forRoot(),
+    ScheduleModule.forRoot(),
     RabbitMQCommonModule,
 
     //User Module
