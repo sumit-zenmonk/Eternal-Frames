@@ -1,4 +1,5 @@
 ARG NODE_IMAGE=node:24.15.0-alpine
+ARG PORT=8080
 
 FROM ${NODE_IMAGE} AS builder
 
@@ -28,7 +29,7 @@ FROM builder AS dev
 CMD ["npm","run" ,"start:dev"]
 
 # Expose the application port
-EXPOSE 8080
+EXPOSE ${PORT}
 
 
 
@@ -62,7 +63,7 @@ COPY --from=builder --chown=myUser:appgroup /app/package.json ./
 USER myUser
 
 # Expose the application port
-EXPOSE 8080
+EXPOSE ${PORT}
 
 # Set production environment
 ENV NODE_ENV=production
