@@ -1,6 +1,7 @@
 ARG NODE_IMAGE=node:24.15.0-alpine
 ARG PORT=8080
 
+# Stage 1: build runtime
 FROM ${NODE_IMAGE} AS builder
 
 WORKDIR /app
@@ -23,6 +24,7 @@ RUN npm run build
 
 
 
+# Stage 2: dev runtime
 FROM builder AS dev
 
 # Start the application
@@ -38,9 +40,7 @@ EXPOSE ${PORT}
 
 
 
-
-
-# Stage 2: Production runtime
+# Stage 3: Production runtime
 FROM ${NODE_IMAGE} AS production
 
 # # Remove devDependencies after build
