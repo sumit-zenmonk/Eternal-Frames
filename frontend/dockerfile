@@ -1,6 +1,11 @@
 ARG NODE_IMAGE=node:24.15.0-alpine
 ARG PORT=3000
 
+
+
+
+
+
 # Stage 1: Base runtime
 FROM ${NODE_IMAGE} AS base
 
