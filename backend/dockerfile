@@ -20,6 +20,10 @@ COPY package.json package-lock.json ./
 # Install all dependencies including devDependencies (needed for TypeScript compilation)
 RUN npm ci
 
+# Copy source code and configuration
+COPY tsconfig.json tsconfig.build.json nest-cli.json ./
+COPY src/ ./src/
+
 # Expose the application port
 EXPOSE ${PORT}
 
@@ -32,10 +36,6 @@ EXPOSE ${PORT}
 # Stage 2: build runtime (only for production builds)
 FROM base AS builder
 
-# Copy source code and configuration
-COPY tsconfig.json tsconfig.build.json nest-cli.json ./
-COPY src/ ./src/
-
 # Build the NestJS application
 RUN npm run build
 
@@ -47,10 +47,6 @@ RUN npm run build
 
 # Stage 3: dev runtime
 FROM base AS dev
-
-# Copy configuration and source files
-COPY tsconfig.json tsconfig.build.json nest-cli.json ./
-COPY src/ ./src/
 
 # Start the application
 CMD ["npm", "run", "start:dev"]

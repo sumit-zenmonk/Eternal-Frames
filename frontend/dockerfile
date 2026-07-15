@@ -17,6 +17,9 @@ COPY package.json package-lock.json ./
 # Install locked dependencies for the build
 RUN npm ci
 
+# Copy source files
+COPY . .
+
 # Expose the application port
 EXPOSE ${PORT}
 
@@ -31,9 +34,6 @@ FROM base AS builder
 # Copy Config
 COPY next.config.ts /app/next.config.ts
 
-# Copy source files
-COPY . .
-
 # Disable Next.js telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
 
@@ -47,9 +47,6 @@ RUN npm run build
 
 # Stage 3: dev runtime
 FROM base AS dev
-
-# Copy source files
-COPY . .
 
 # Start the application in dev mode
 CMD ["npm", "run", "dev"]
